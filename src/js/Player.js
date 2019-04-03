@@ -2,7 +2,7 @@ class Player{
     constructor(playerNo,squareSize){
         this.squareSize=squareSize;
         this.obj = new createjs.Container();
-        this.playerImg = new createjs.Bitmap("../images/position.png");
+        this.playerImg = new createjs.Bitmap("images/position.png");
         this.playerCir = new createjs.Shape();
         this.playerCir.graphics.beginFill("#fff").drawCircle(15, 15, 10);
         this.playerNr = new createjs.Text("","20px Arial", "#000");

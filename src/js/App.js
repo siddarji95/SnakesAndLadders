@@ -15,11 +15,11 @@ class App {
     createjs.Ticker.addEventListener("tick", () => stage.update());
 
     this.preloadImages([
-    '../images/position.png',
-    '../images/SnakeA.gif',
-    '../images/SnakeB.gif',
-    '../images/LadderA.gif',
-    '../images/LadderB.gif'
+    'images/position.png',
+    'images/SnakeA.gif',
+    'images/SnakeB.gif',
+    'images/LadderA.gif',
+    'images/LadderB.gif'
 
     ], function(){
       console.log('All images were loaded');

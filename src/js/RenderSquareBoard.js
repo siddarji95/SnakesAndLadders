@@ -65,30 +65,30 @@ class RenderSquareBoard {
     $("body").append(this.rollButton[0]);
     this.rollButton.html("Roll dice");
 
-    // this.rollButton.click(() => {
-    //   this.rollButton.attr("disabled", true);
-    //   rollADie({
-    //     element: this.dice[0],
-    //     numberOfDice: 1,
-    //     callback: res => {
-    //       this.newMove = res[0];
-    //       setTimeout(() => this.nextMove(), 1000);
-    //     }
-    //   });
-    // });
-  
     this.rollButton.click(() => {
       this.rollButton.attr("disabled", true);
-      console.log(this.newMove)
       rollADie({
         element: this.dice[0],
         numberOfDice: 1,
-        values:[this.newMove],
         callback: res => {
+          this.newMove = res[0];
           setTimeout(() => this.nextMove(), 1000);
         }
       });
     });
+  
+    // this.rollButton.click(() => {
+    //   this.rollButton.attr("disabled", true);
+    //   console.log(this.newMove)
+    //   rollADie({
+    //     element: this.dice[0],
+    //     numberOfDice: 1,
+    //     values:[this.newMove],
+    //     callback: res => {
+    //       setTimeout(() => this.nextMove(), 1000);
+    //     }
+    //   });
+    // });
 
   }
 
