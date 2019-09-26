@@ -1,4 +1,3 @@
-import RenderSnakeAndLadders from "./RenderSnakeAndLadders";
 import rollADie from "roll-a-die";
 import Player from "./Player";
 
