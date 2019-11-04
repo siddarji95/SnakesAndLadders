@@ -2,7 +2,7 @@ import rollADie from "roll-a-die";
 import Player from "./Player";
 import PlayerControl from "./PlayerControl";
 import io from 'socket.io-client';
-const socket = io('http://172.19.4.207:8081/');
+const socket = io('/');
 window.socket = socket;
 
 
