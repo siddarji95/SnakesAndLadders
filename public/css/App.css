@@ -1,0 +1,103 @@
+body{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background-color: chartreuse;
+}
+
+button {
+        background-color: #489fd4;
+        color: #ffffff;
+}
+button:hover{
+      background-color: #0f2e41;
+      color: #ffffff;
+      border-color: #0f2e41;
+}
+button:disabled{
+    background-color: #727272;
+}
+img{
+  max-width: 100%;
+}
+.gameBoard{
+  padding: 25px 0px
+}
+.glow {
+  font-family: Snell Roundhand, cursive;
+   font-size: 80px;
+   color: #fff;
+   text-align: center;
+   -webkit-animation: glow 1s ease-in-out infinite alternate;
+   -moz-animation: glow 1s ease-in-out infinite alternate;
+   animation: glow 1s ease-in-out infinite alternate;
+ }
+ 
+ @-webkit-keyframes glow {
+   from {
+     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+   }
+   
+   to {
+     text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+   }
+ }
+ #userHello{
+  position: absolute;
+  left: 620px;
+  top: 50px;
+  width: 200px;
+ }
+ #turnPopupWrapper{
+  background: rgba(0,0,0,.4);
+  cursor: pointer;
+  height: 100%;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: 10000;
+ }
+ #helper{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+ }
+ #turnPopup{
+  box-shadow: 10px 10px 60px #bbdb1e;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 30px;
+  background-color: wheat;
+  padding: 0px 10px;
+ }
+#dice{
+  position: absolute;
+  left: 700px;
+  top: 500px;
+  width: 100px;
+  height: 100px;
+}
+#nextTurn{
+  position: absolute;
+  left: 620px;
+  top: 190px;
+}
+#playerTurn{
+  position: absolute;
+  left: 620px;
+  top: 160px;
+  width: 120px;
+}
+#rollButton{
+  position: absolute;
+  left: 620px;
+  top: 230px;
+}
+#currentPlayerNr{
+  color: red;
+}

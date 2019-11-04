@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<head>
+		<title>
+			ES6 Practice
+		</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+		<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
+		
+	</head>
+	
+	<body>
+		<div class="container">
+			<div class="menu">
+					<h1 id="title" class="glow">Snake And Ladder</h1>
+					<h3>How To Play</h3>
+					<ol>
+						<li>Player 1 Create a new game by entering the username</li>
+						<li>Player 2 Enter another username and the room id that is displayed on first window.</li>
+						<li>Click on join game. </li>
+					</ol>
+					<h4>Create a new Game</h4>
+					<input type="text" name="name" id="nameNew" placeholder="Enter your name" required>
+					<button id="new">New Game</button>
+					<br><br>
+					<h4>Join an existing game</h4>
+					<input type="text" name="name" id="nameJoin" placeholder="Enter your name" required>
+					<input type="text" name="room" id="room" placeholder="Enter Game ID" required>
+					<button id="join">Join Game</button>
+				</div>
+		<!-- <div id='userHello'></div>
+		<div id='turn'></div> -->
+		<canvas class="gameBoard" id="demoCanvas" width="900" height="600" style="display: none;">
+			alternate content
+		</canvas>
+
+    	</div>
+	<script type="text/javascript" src="main.bundle.js"></script></body>
+</html>

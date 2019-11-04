@@ -14,7 +14,7 @@ module.exports = {
     output: {
       filename: '[name].bundle.js',
       chunkFilename: '[name].bundle.js',
-      path: path.resolve(__dirname, 'dist')
+      path: path.resolve(__dirname, 'public')
     },
     module: {
         rules: [
@@ -43,7 +43,7 @@ module.exports = {
     },
     "devtool": isDevEnv ? "source-map" : "",
     plugins: [
-        new CleanWebpackPlugin(['dist']),
+        new CleanWebpackPlugin(['public']),
         new HTMLWebpackPlugin({
             template: "./src/index.html",
             filename: "index.html",
