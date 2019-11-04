@@ -54,7 +54,6 @@ module.exports = {
             jQuery: 'jquery'
         }),
 		new CopyWebpackPlugin([
-            { from: 'src/config', to: 'config' },
             { from: 'src/css', to: 'css' },
             { from: 'src/images', to: 'images' }
         ], { debug: true })
