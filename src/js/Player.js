@@ -3,6 +3,7 @@ class Player{
         this.squareSize=squareSize;
         this.obj = new createjs.Container();
         this.playerImg = new createjs.Bitmap("images/position.png");
+        this.playerImg.setBounds(0,0,30,48)
         this.playerCir = new createjs.Shape();
         this.playerCir.graphics.beginFill("#fff").drawCircle(15, 15, 10);
         this.playerNr = new createjs.Text("","20px Arial", "#000");
@@ -19,9 +20,13 @@ class Player{
         //console.log(this.player)
     }
     drawPlayer(x,y){
+        console.log(this.playerNo,x,y,this.playerImg.getBounds())
         this.obj.x = x + this.squareSize / 2 - this.playerImg.getBounds().width / 2;
         this.obj.y = y + this.squareSize / 2 - this.playerImg.getBounds().height / 2;
         this.obj.playerNr.text = this.playerNo;
+    }
+    setPlayerName(playerName){
+        this.playerName = playerName;
     }
     updatePlayer(x,y,callback){
         TweenMax.to(this.obj, 2, {

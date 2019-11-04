@@ -3,36 +3,12 @@ body{
     padding: 0;
     border: 0;
     outline: 0;
-    font-size: 100%;
-    color: #4b4e4f;
-    vertical-align: baseline;
-    background: transparent;
-    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    background-color: chartreuse;
 }
-p{
-  margin-top: 16px;
-  margin-bottom: 16px;
-}
-button {
-    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-    background-color: #489fd4;
-    color: #ffffff;
-    padding: 14px 24px 14px 24px;
-    text-decoration: none;
-    text-align: center;
-    border: 0px solid #489fd4;
-    -webkit-transition: background-color 0.25s ease-in, color 0.25s ease-in, border-color 0.25s ease-in;
-    -moz-transition: background-color 0.25s ease-in, color 0.25s ease-in, border-color 0.25s ease-in;
-    -ms-transition: background-color 0.25s ease-in, color 0.25s ease-in, border-color 0.25s ease-in;
-    transition: background-color 0.25s ease-in, color 0.25s ease-in, border-color 0.25s ease-in;
-    font-size: 18px;
-    font-weight: 300;
-    line-height: 140%;
-    width: 140px;
-    margin: 5px 0 5px 0;
-    padding: 10px 24px 10px 24px;
-    cursor: pointer;
 
+button {
+        background-color: #489fd4;
+        color: #ffffff;
 }
 button:hover{
       background-color: #0f2e41;
@@ -45,6 +21,60 @@ button:disabled{
 img{
   max-width: 100%;
 }
+.gameBoard{
+  padding: 25px 0px
+}
+.glow {
+  font-family: Snell Roundhand, cursive;
+   font-size: 80px;
+   color: #fff;
+   text-align: center;
+   -webkit-animation: glow 1s ease-in-out infinite alternate;
+   -moz-animation: glow 1s ease-in-out infinite alternate;
+   animation: glow 1s ease-in-out infinite alternate;
+ }
+ 
+ @-webkit-keyframes glow {
+   from {
+     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+   }
+   
+   to {
+     text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+   }
+ }
+ #userHello{
+  position: absolute;
+  left: 620px;
+  top: 50px;
+  width: 200px;
+ }
+ #turnPopupWrapper{
+  background: rgba(0,0,0,.4);
+  cursor: pointer;
+  height: 100%;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: 10000;
+ }
+ #helper{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+ }
+ #turnPopup{
+  box-shadow: 10px 10px 60px #bbdb1e;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 30px;
+  background-color: wheat;
+  padding: 0px 10px;
+ }
 #dice{
   position: absolute;
   left: 700px;
@@ -54,18 +84,19 @@ img{
 }
 #nextTurn{
   position: absolute;
-  left: 700px;
-  top: 100px;
+  left: 620px;
+  top: 190px;
 }
 #playerTurn{
   position: absolute;
-  left: 680px;
-  top: 80px;
+  left: 620px;
+  top: 160px;
+  width: 120px;
 }
 #rollButton{
   position: absolute;
-  left: 670px;
-  top: 120px;
+  left: 620px;
+  top: 230px;
 }
 #currentPlayerNr{
   color: red;
