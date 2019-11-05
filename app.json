@@ -1,8 +1,7 @@
 {
   "name": "Snake and ladder",
   "description": "A barebones Node.js app using Express 4",
-  "repository": "https://github.com/heroku/node-js-getting-started",
-  "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/master/public/node.svg",
+  "repository": "https://github.com/siddarji95/SnakesAndLadders",
   "keywords": ["node", "express", "heroku"],
   "image": "heroku/nodejs"
 }
