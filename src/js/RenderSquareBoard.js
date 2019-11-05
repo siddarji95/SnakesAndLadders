@@ -2,7 +2,9 @@ import rollADie from "roll-a-die";
 import Player from "./Player";
 import PlayerControl from "./PlayerControl";
 import io from 'socket.io-client';
-const socket = io('/');
+import RenderSnakesAndLadders from "./RenderSnakesAndLadders";
+// const socket = io('/');
+const socket = io('http://172.19.4.207:8081/');
 window.socket = socket;
 
 
@@ -50,8 +52,8 @@ class RenderSquareBoard {
     socket.on('newGame', (data) => {
       console.log('newGame')
       const message =
-        `Hello, ${data.name}. Please ask your friend to enter Game ID: 
-        ${data.room}. Waiting for player 2...`;
+        `Hello, ${data.name}.<br> Please ask your friend to enter Game ID: 
+        ${data.room}.<br> Waiting for player 2...`;
 
       // Create game for player 1
       this.createBoard();
@@ -93,7 +95,7 @@ class RenderSquareBoard {
       console.log('opponentPlaying',this.currentPlayer.playerNo,data)
         this.newMove = data.move;
         // this.nextMove();
-        this.setCurrentTurn(false);
+        // this.setCurrentTurn(false);
     });
     // this.bg = new createjs.Bitmap("../images/bg.jpg");
     // stage.addChild(this.bg);
@@ -219,45 +221,7 @@ class RenderSquareBoard {
     }
   }
   renderSnakesAndLadders() {
-    let ladder1 = this.createLadders(96, 57);
-    this.stage.addChild(ladder1);
-
-    let ladder2 = this.createLadders(92, 71);
-    this.stage.addChild(ladder2);
-
-    let ladder3 = this.createLadders(72, 52);
-    this.stage.addChild(ladder3);
-
-    let ladder4 = this.createLadders(59, 20);
-    this.stage.addChild(ladder4);
-
-    let ladder5 = this.createLadders(23, 2);
-    this.stage.addChild(ladder5);
-
-    let ladder6 = this.createLadders(45, 6);
-    this.stage.addChild(ladder6);
-
-    let snake1 = this.createSnakes(98, 40);
-    this.stage.addChild(snake1);
-
-    let snake2 = this.createSnakes(87, 49);
-    this.stage.addChild(snake2);
-
-    let snake3 = this.createSnakes(84, 58);
-    this.stage.addChild(snake3);
-
-    let snake4 = this.createSnakes(73, 15);
-    this.stage.addChild(snake4);
-
-    let snake5 = this.createSnakes(50, 5);
-    this.stage.addChild(snake5);
-
-    let snake6 = this.createSnakes(43, 17);
-    this.stage.addChild(snake6);
-
-    let snake7 = this.createSnakes(56, 8);
-    this.stage.addChild(snake7);
-
+    this.snakesAndLadders = new RenderSnakesAndLadders(this.stage,this.squares,this.squareSize);
     // let ladder2= this.createLadders(500,50,560,130)
     // stage.addChild(ladder2);
   }
@@ -278,43 +242,58 @@ class RenderSquareBoard {
       room: this.roomID,
     });
   }
+  setCurrentTurn(turn) {
+    this.currentTurn = turn;
+    console.log('setCurrentTurn',this.currentTurn)
+    const message = turn ? 'Your turn' : 'Waiting for Opponent...';
+    $('#turn').text(message);
+
+    if(!turn){
+      this.turnPopupWrapper = $("<div>", {
+        id: "turnPopupWrapper",
+        class: "turnPopupWrapper"
+      });
+      $("body").append(this.turnPopupWrapper[0]);
+      this.helper = $("<div>", {
+        id: "helper",
+        class: "helper"
+      });
+      this.turnPopupWrapper[0].append(this.helper[0]);
+      this.turnPopup = $("<div>", {
+        id: "turnPopup",
+        class: "turnPopup"
+      });
+      this.turnPopupWrapper[0].append(this.turnPopup[0]);
+      this.turnPopup.html(message);
+    }
+    else{
+      if($('#turnPopupWrapper').length)
+      this.turnPopupWrapper.fadeOut();
+    }
+    this.rollButton.attr("disabled", !turn);
+  }
+  updatePlayerStatus(){
+    this.setCurrentTurn(!this.currentTurn);
+    if (this.currentPlayerNr < this.players.length - 1) {
+      this.currentPlayerNr++;
+    } else {
+      this.currentPlayerNr = 0;
+    }
+    this.currentPlayer.obj.playerNr.outline = false;
+    this.currentPlayer.obj.playerNr.color = 'black';
+    this.currentPlayer = this.players[this.currentPlayerNr];
+    // console.log('currentPlayer',this.currentPlayer.playerNo);
+    this.playerControl.playerTurn.html(`Turn of player: <span id='currentPlayerNr'>${this.currentPlayerNr + 1}</span>`);
+    this.currentPlayer.obj.playerNr.outline = 2;
+    this.currentPlayer.obj.playerNr.color = 'red';
+  }
   stillPlaying(){
+    console.log('stillPlaying',this.currentTurn)
     this.setCurrentTurn(true);
-    console.log('stillPlaying')
     socket.emit('stillPlaying', {
       move: this.newMove,
       room: this.roomID,
     });
-  }
-  createSnakes(start, end) {
-    const snake = new createjs.Shape();
-    snake.graphics
-      .setStrokeStyle(8, "round")
-      .beginStroke("red")
-      .moveTo(
-        this.squares[start].x + this.squareSize / 2,
-        this.squares[start].y + (this.squareSize * 2) / 3
-      )
-      .lineTo(
-        this.squares[end].x + this.squareSize / 2,
-        this.squares[end].y + this.squareSize / 3
-      );
-    return snake;
-  }
-  createLadders(start, end) {
-    const snake = new createjs.Shape();
-    snake.graphics
-      .setStrokeStyle(8, "round")
-      .beginStroke("#fff")
-      .moveTo(
-        this.squares[start].x + this.squareSize / 2,
-        this.squares[start].y + (this.squareSize * 2) / 3
-      )
-      .lineTo(
-        this.squares[end].x + this.squareSize / 2,
-        this.squares[end].y + this.squareSize / 3
-      );
-    return snake;
   }
   upAndDown() {
     //console.log("up", this.currentPlayer.currentPos);
@@ -376,7 +355,7 @@ class RenderSquareBoard {
         onComplete: () => {
           if (TempPos < this.currentPlayer.currentPos) { 
             this.rollButton.attr("disabled", false)
-            if(!this.currentTurn){
+            if(this.currentTurn){
                this.stillPlaying();
             }
            }
@@ -395,51 +374,6 @@ class RenderSquareBoard {
         }
       else { this.updatePlayerStatus(); }
     }
-  }
-  setCurrentTurn(turn) {
-    this.currentTurn = turn;
-    console.log('setCurrentTurn',this.currentTurn)
-    const message = turn ? 'Your turn' : 'Waiting for Opponent...';
-    $('#turn').text(message);
-
-    if(!turn){
-      this.turnPopupWrapper = $("<div>", {
-        id: "turnPopupWrapper",
-        class: "turnPopupWrapper"
-      });
-      $("body").append(this.turnPopupWrapper[0]);
-      this.helper = $("<div>", {
-        id: "helper",
-        class: "helper"
-      });
-      this.turnPopupWrapper[0].append(this.helper[0]);
-      this.turnPopup = $("<div>", {
-        id: "turnPopup",
-        class: "turnPopup"
-      });
-      this.turnPopupWrapper[0].append(this.turnPopup[0]);
-      this.turnPopup.html(message);
-    }
-    else{
-      if($('#turnPopupWrapper').length)
-      this.turnPopupWrapper.fadeOut();
-    }
-    this.rollButton.attr("disabled", !turn);
-  }
-  updatePlayerStatus(){
-    this.setCurrentTurn(!this.currentTurn);
-    if (this.currentPlayerNr < this.players.length - 1) {
-      this.currentPlayerNr++;
-    } else {
-      this.currentPlayerNr = 0;
-    }
-    this.currentPlayer.obj.playerNr.outline = false;
-    this.currentPlayer.obj.playerNr.color = 'black';
-    this.currentPlayer = this.players[this.currentPlayerNr];
-    // console.log('currentPlayer',this.currentPlayer.playerNo);
-    this.playerControl.playerTurn.html(`Turn of player: <span id='currentPlayerNr'>${this.currentPlayerNr + 1}</span>`);
-    this.currentPlayer.obj.playerNr.outline = 2;
-    this.currentPlayer.obj.playerNr.color = 'red';
   }
   nextMove() {
     console.log('nextMove')

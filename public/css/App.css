@@ -4,6 +4,7 @@ body{
     border: 0;
     outline: 0;
     background-color: chartreuse;
+    font-family: 'Courier New', Courier, monospace
 }
 
 button {
@@ -47,7 +48,7 @@ img{
   position: absolute;
   left: 620px;
   top: 50px;
-  width: 200px;
+  width: 210px;
  }
  #turnPopupWrapper{
   background: rgba(0,0,0,.4);
@@ -85,18 +86,23 @@ img{
 #nextTurn{
   position: absolute;
   left: 620px;
-  top: 190px;
+  top: 260px;
 }
 #playerTurn{
   position: absolute;
   left: 620px;
-  top: 160px;
-  width: 120px;
+  top: 230px;
+  width: 180px;
+}
+#turn{
+  position: absolute;
+  left: 620px;
+  top: 100px;
 }
 #rollButton{
   position: absolute;
   left: 620px;
-  top: 230px;
+  top: 300px;
 }
 #currentPlayerNr{
   color: red;
