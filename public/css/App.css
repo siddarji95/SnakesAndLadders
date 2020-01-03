@@ -3,7 +3,7 @@ body{
     padding: 0;
     border: 0;
     outline: 0;
-    background-color: chartreuse;
+    /* background-color: chartreuse; */
     font-family: 'Courier New', Courier, monospace
 }
 
@@ -23,7 +23,9 @@ img{
   max-width: 100%;
 }
 .gameBoard{
-  padding: 25px 0px
+  margin: 25px 0px;
+  border: 10px groove #33c3f0;
+  background-color: yellow;
 }
 .glow {
   font-family: Snell Roundhand, cursive;

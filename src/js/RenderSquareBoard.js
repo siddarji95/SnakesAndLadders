@@ -97,22 +97,23 @@ class RenderSquareBoard {
         // this.nextMove();
         // this.setCurrentTurn(false);
     });
-    // this.bg = new createjs.Bitmap("../images/bg.jpg");
-    // stage.addChild(this.bg);
-    // console.log(this.bg)
+    this.bg = new createjs.Bitmap("../images/bg.jpg");
+    // this.bg.alpha = 0.4;
+    stage.addChild(this.bg);
+    console.log(this.bg)
 
     for (let i = 0; i < this.squares.length; i++) {
       stage.addChild(this.squares[i]);
     }
 
     //let renderSnakesAndLadders = new RenderSnakeAndLadders(stage);
-    this.renderSnakesAndLadders();
+    // this.renderSnakesAndLadders();
 
     for (let i = 0; i < this.displayNumbers.length; i++) {
       stage.addChild(this.displayNumbers[i]);
     }
 
-    this.renderSnakesAndLadders();
+    // this.renderSnakesAndLadders();
 
     this.players.push(this.addPlayer(1, 600, 540));
     this.players.push(this.addPlayer(2, 660, 540));
@@ -173,27 +174,27 @@ class RenderSquareBoard {
         this.squares[squareNr].x = x;
         this.squares[squareNr].y = y;
 
-        if (squareNr % 2 == 0) {
-          this.squares[squareNr].graphics
-            .beginStroke("red")
-            .beginFill(colorA)
-            .drawRect(0, 0, this.squareSize, this.squareSize);
-        } else {
-          this.squares[squareNr].graphics
-            .beginStroke("red")
-            .beginFill(colorB)
-            .drawRect(0, 0, this.squareSize, this.squareSize);
-        }
+        // if (squareNr % 2 == 0) {
+        //   this.squares[squareNr].graphics
+        //     .beginStroke("red")
+        //     .beginFill(colorA)
+        //     .drawRect(0, 0, this.squareSize, this.squareSize);
+        // } else {
+        //   this.squares[squareNr].graphics
+        //     .beginStroke("red")
+        //     .beginFill(colorB)
+        //     .drawRect(0, 0, this.squareSize, this.squareSize);
+        // }
 
-        this.displayNumbers[squareNr] = new createjs.Text(
-          squareNr,
-          "20px Arial",
-          "#000"
-        );
-        this.displayNumbers[squareNr].x = x + this.squareSize / 2;
-        this.displayNumbers[squareNr].y = y + this.squareSize / 2;
-        this.displayNumbers[squareNr].textAlign = "center";
-        this.displayNumbers[squareNr].textBaseline = "middle";
+        // this.displayNumbers[squareNr] = new createjs.Text(
+        //   squareNr,
+        //   "20px Arial",
+        //   "#000"
+        // );
+        // this.displayNumbers[squareNr].x = x + this.squareSize / 2;
+        // this.displayNumbers[squareNr].y = y + this.squareSize / 2;
+        // this.displayNumbers[squareNr].textAlign = "center";
+        // this.displayNumbers[squareNr].textBaseline = "middle";
 
         let x1, y1;
         if (leftToRight) {
@@ -368,7 +369,7 @@ class RenderSquareBoard {
     else if (TempPos == this.currentPlayer.currentPos) {
       if (this.newMove == 6) {
           this.rollButton.attr("disabled", false); 
-          if(!this.currentTurn){
+          if(this.currentTurn){
           this.stillPlaying();
           }
         }
