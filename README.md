@@ -1,3 +1,3 @@
 # SnakesAndLadders
 ### Demo
-https://siddarji95.github.io/SnakesAndLadders/
+https://snakesandladders95.herokuapp.com/
