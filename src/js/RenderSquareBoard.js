@@ -4,9 +4,8 @@ import PlayerControl from "./PlayerControl";
 import io from 'socket.io-client';
 import RenderSnakesAndLadders from "./RenderSnakesAndLadders";
 // const socket = io('/');
-const socket = io('http://localhost:8081/');
+const socket = io('https://snakesandladders95.herokuapp.com/', {secure: true});
 window.socket = socket;
-
 
 class RenderSquareBoard {
   constructor(stage) {
